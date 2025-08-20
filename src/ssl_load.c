@@ -1665,6 +1665,7 @@ static int ProcessBufferCertPublicKey(WOLFSSL_CTX* ctx, WOLFSSL* ssl,
             ret = wc_RsaPublicKeyDecode_ex(cert->publicKey, &idx,
                 cert->pubKeySize, NULL, (word32*)&keySz, NULL, NULL);
             if ((ret == 0) && checkKeySz) {
+                WOLFSSL_DEBUG_PRINTF("ctx->minRsaKeySz: %d\nRSA_MAX_SIZE: %d\n");
                 ret = CHECK_KEY_SZ(ssl ? ssl->options.minRsaKeySz :
                     ctx->minRsaKeySz, RSA_MAX_SIZE / 8, keySz, RSA_KEY_SIZE_E);
             }
